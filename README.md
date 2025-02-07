@@ -67,7 +67,7 @@ See the `doc/` directory for detailed information about:
 
 ## Requirements
 
-- Node-RED or n8n for running workflow automation scripts
+- n8n for running workflow automation scripts
 - Microsoft Excel for viewing data files
 - Text editor for viewing documentation files
 
