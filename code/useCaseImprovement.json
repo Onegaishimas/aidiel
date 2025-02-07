@@ -1,0 +1,1012 @@
+{
+  "name": "useCaseImprovement",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        40,
+        -620
+      ],
+      "id": "fe3dc623-e2d5-4e9f-955f-99f03570cac1",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -620
+      ],
+      "id": "a5d97c28-361f-4a8c-8522-1f727f688212",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -180,
+        -620
+      ],
+      "id": "4b2683dc-7f05-4c60-986f-dfc0b297d93c",
+      "name": "GetUseCases",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "45859e6b-2921-450f-bd28-1c717b0ababf",
+              "name": "use_case_Id",
+              "value": "={{ $json.use_case_Id }}",
+              "type": "string"
+            },
+            {
+              "id": "784c5644-4410-445d-ab30-3d8b374afe6d",
+              "name": "use_case_name",
+              "value": "={{ $json.use_case_name }}",
+              "type": "string"
+            },
+            {
+              "id": "9aaa4f1d-9d9e-4f6b-a53d-3d7c313253ce",
+              "name": "agency",
+              "value": "={{ $json.agency }}",
+              "type": "string"
+            },
+            {
+              "id": "80f3c0d5-83ed-45c0-8482-d7076dab74d6",
+              "name": "abr",
+              "value": "={{ $json.abr }}",
+              "type": "string"
+            },
+            {
+              "id": "d00b5356-48d1-4c1c-b0ec-fbf132680e8e",
+              "name": "bureau",
+              "value": "={{ $json.bureau }}",
+              "type": "string"
+            },
+            {
+              "id": "0f42743f-cd7c-4f3e-a8fe-e35a6b207b2d",
+              "name": "topic_area",
+              "value": "={{ $json.topic_area }}",
+              "type": "string"
+            },
+            {
+              "id": "84c1a261-5b58-4722-a63d-7a84405d5a41",
+              "name": "commercial_ai",
+              "value": "={{ $json.commercial_ai }}",
+              "type": "string"
+            },
+            {
+              "id": "90b9aa85-cd7d-44ce-8526-a6509c05e8f6",
+              "name": "purpose_benefits",
+              "value": "={{ $json.purpose_benefits }}",
+              "type": "string"
+            },
+            {
+              "id": "29d04ef7-c4e9-41a8-bc3a-7ad52b52cca2",
+              "name": "outputs",
+              "value": "={{ $json.outputs }}",
+              "type": "string"
+            },
+            {
+              "id": "e3767bc6-3b46-4216-90c9-57dff362deaf",
+              "name": "sri",
+              "value": "={{ $json.sri }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -620
+      ],
+      "id": "dcb47dec-62d6-4c19-bde0-979edf635d5a",
+      "name": "SelectPassThrough"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "use_case_Id": "={{ $json.use_case_Id }}",
+            "agency": "={{ $json.agency }}",
+            "abr": "={{ $json.abr }}",
+            "bureau": "={{ $json.bureau }}",
+            "commercial_ai": "={{ $json.commercial_ai }}",
+            "topic_area": "={{ $json.topic_area }}",
+            "value_category_rationale": "={{ $json.value_category_rationale }}",
+            "value_category": "={{ $json.value_category }}",
+            "solution_assertion": "={{ $json.solution_assertion }}",
+            "problem_statement": "={{ $json.problem_statement }}",
+            "sri": "={{ $json.sri }}",
+            "purpose_benefits": "={{ $json.purpose_benefits }}",
+            "technical_elements": "={{ $json.technical_elements }}",
+            "stakeholders": "={{ $json.stakeholders }}",
+            "outputs": "={{ $json.outputs }}",
+            "use_case_name": "={{ $json.use_case_name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "use_case_Id",
+              "displayName": "use_case_Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "use_case_name",
+              "displayName": "use_case_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "agency",
+              "displayName": "agency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "abr",
+              "displayName": "abr",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "bureau",
+              "displayName": "bureau",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "topic_area",
+              "displayName": "topic_area",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "commercial_ai",
+              "displayName": "commercial_ai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "purpose_benefits",
+              "displayName": "purpose_benefits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "outputs",
+              "displayName": "outputs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sri",
+              "displayName": "sri",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "problem_statement",
+              "displayName": "problem_statement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "solution_assertion",
+              "displayName": "solution_assertion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "value_category",
+              "displayName": "value_category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "value_category_rationale",
+              "displayName": "value_category_rationale",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "technical_elements",
+              "displayName": "technical_elements",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "stakeholders",
+              "displayName": "stakeholders",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -360,
+        -400
+      ],
+      "id": "b5d8da23-c02f-4d93-b8a2-75330ca7be54",
+      "name": "writeResults",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "problem_statement",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -380
+      ],
+      "id": "46187c33-7256-4c8b-9f68-a65c0369192a",
+      "name": "xform_prob_state"
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=User: A chat between a serious user and an artificial intelligence assistant. The assistant provides expert articulation of relevant aspects of AI use cases based on a modicum of input information. Write a 250-word \"solution assertion\" that incorporates and addresses the information in <AI_Use_Case_Details> using the format in <template>...being mindful of the problem statement in <problem_statement>...ensuring clarity, consistency, and alignment with operational goals.\n\n\n<AI_Use_Case_Details>\n*Use Case Name: {{ $json.use_case_name }}\n*Agency: {{ $json.agency }}\n*Agency Abbreviation: {{ $json[\"abr\"] }}\n*Bureau: {{ $json.bureau }}\n*Use Case Topic Area: {{ $json.topic_area }}\n*Is the AI use case found in the below list of general commercial AI products and services?: {{ $json.commercial_ai }}\n*What is the intended purpose and expected benefits of the AI?\": {{ $json.purpose_benefits }}\n*Describe the AI system's outputs.: {{ $json.outputs }}\n*Is the AI use case Safety or Rights impacting?: {{ $json.sri }}\n</AI_Use_Case_Details>\n\n<template>\nSolution Description:\nProvide a concise overview of the AI-enabled solution, explicitly stating the problem it addresses and the technologies involved. Describe how the solution integrates into existing workflows and how it improves operational efficiency.\n\nAI-Driven Approach:\nDetail the specific AI technologies used (e.g., machine learning, natural language processing, computer vision) and how they function to solve the problem. Highlight innovative features or unique capabilities that contribute to the solution's effectiveness.\n\nMeasurable Impacts:\n\nIncreased Accuracy: Describe how the solution improves accuracy or precision in addressing the problem.\nReduced Processing Times: Explain how the solution saves time or improves efficiency.\nResource Optimization: Highlight how the solution optimizes resources, such as personnel or materials.\nOperational Efficiency: Discuss how the solution integrates seamlessly into workflows and enhances decision-making.\nSolution Summary:\n\nProblem Addressed: Clearly state the core issue the solution targets.\nAI-Driven Approach: Briefly describe the AI methodologies used to solve the problem.\nMeasurable Benefits: Summarize the tangible outcomes of the solution.\n</template>\n\n<problem_statement>\n{{ $json.problem_statement }}\n</problem_statement>\n\nAssistant:"
+            }
+          }
+        }
+      },
+      "name": "solution_assertion",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        -140
+      ],
+      "id": "35ebd6b7-a05d-48a5-8562-e1869a27d5d5"
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=User: You are an advanced artificial intelligence assistant. Your task is to craft effective problem statements using clarity, specificity, and alignment with operational goals. Read the provided <AI_Use_Case_Details> and write a problem statement to meet the following criteria:\n\nBegin with \"The problem is...\" or \"Currently...\".\nClearly describe what issue or challenge needs to be addressed.\nExplain why this is significant, providing relevant context.\nIdentify who is affected by this problem and how.\nEnsure the statement is concise, avoids verbosity, and focuses exclusively on articulating the problem (not solutions).\nExample Effective Problem Statement: Current cargo inspection methods are labor-intensive and prone to human error, limiting their ability to process the growing volume of containers efficiently. This inefficiency impacts resource allocation and delays timely identification of contraband or security risks.\n\n<AI_Use_Case_Details>\n*Use Case Name: {{ $json.use_case_name }}\n*Agency: {{ $json.agency }}\n*Agency Abbreviation: {{ $json[\"abr\"] }}\n*Bureau: {{ $json.bureau }}\n*Use Case Topic Area: {{ $json.topic_area }}\n*Is the AI use case found in the below list of general commercial AI products and services?: {{ $json.commercial_ai }}\n*What is the intended purpose and expected benefits of the AI?\": {{ $json.purpose_benefits }}\n*Describe the AI system's outputs.: {{ $json.outputs }}\n*Is the AI use case Safety or Rights impacting?: {{ $json.sri }}\n</AI_Use_Case_Details>\n\nOutput: Write the problem_statement with clarity, specificity, and relevance while adhering to the above criteria.\n\nAssistant:"
+            }
+          }
+        }
+      },
+      "name": "prob_state",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        -380
+      ],
+      "id": "4de092dc-133b-4d03-8f37-264dfb595524"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "solution_assertion",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -140
+      ],
+      "id": "b836614e-e57f-49a4-99e8-596c0a38d754",
+      "name": "xform_solution_assertion"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        660,
+        -380
+      ],
+      "id": "1abfa969-7a77-4718-b5b5-545d3b3e496f",
+      "name": "merge_prob_state"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "includeUnpaired": true
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        660,
+        -140
+      ],
+      "id": "db77660c-ed45-4b85-a881-39a809fd12ef",
+      "name": "merge_solution_assertion"
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "stuff",
+              "prompt": "=User: You are an advanced AI assistant tasked with categorizing AI use cases into one of three value categories. Your response must adhere to the structure and formatting provided below, ensuring a detailed, insightful, and contextually accurate justification. Analyze the provided use case details, focusing on the core transformative impact of the AI solution.\n\nValue Categories:\n\nEfficiency Amplifier: Streamlines existing processes, reduces resource consumption, or improves speed and accuracy within current workflows.\n\nCapability Enhancer: Introduces new capabilities, expands operational boundaries, or enables tasks previously constrained by resource or technical limitations.\n\nBreakthrough Enabler: Achieves novel outcomes, redefines operational paradigms, or transcends traditional limitations entirely.\n\nInstructions:\n\nCarefully review the provided use case details, including the problem statement, solution assertion, outputs, and intended benefits.\n\nDetermine the single value category—Efficiency Amplifier, Capability Enhancer, or Breakthrough Enabler—that best represents the primary transformative impact of the AI solution.\n\nProvide a detailed, structured justification for your categorization in 300 words, citing 3-4 specific points from the use case.\n\nEnsure that the justification directly connects the use case’s unique features to the selected category, avoiding overlap or ambiguity.\n\nInput:\nProblem Statement: {{ $json.problem_statement }}\nUse Case Name: {{ $json.use_case_name }}\nAgency: {{ $json.agency }}\nBureau: {{ $json.bureau }}\nUse Case Topic Area: {{ $json.topic_area }}\nIntended Purpose and Expected Benefits: {{ $json.purpose_benefits }}\nAI System Outputs: {{ $json.outputs }}\nSafety or Rights Impact: {{ $json.sri }}\nSolution Assertion: {{ $json.solution_assertion }}\n\nResponse Template:\n\nCATEGORY: <Efficiency Amplifier | Capability Enhancer | Breakthrough Enabler>  \n\n## Rationale:  \nProvide a structured narrative that includes:\n1. **Introduction**: State the selected value category and explain why it applies to this AI use case.\n2. **Point 1**: Describe a specific feature or functionality of the solution and its transformative impact.\n3. **Point 2**: Highlight how the AI expands or optimizes operational boundaries or efficiencies.\n4. **Point 3**: Explain the measurable or qualitative outcomes that support this categorization.\n5. **Conclusion**: Summarize how the selected category best represents the core impact of the AI solution.\n\n### Example:\nCATEGORY: Capability Enhancer  \n\nThe AI-driven Non-Intrusive Inspection (NII) 3D Imaging Tool is categorized as a \"Capability Enhancer\" because it introduces advanced capabilities that extend beyond traditional imaging methods. It provides high-resolution, 3D imaging for detailed analysis, overcoming limitations of two-dimensional systems. Machine learning algorithms trained on contraband patterns empower agents to identify hidden narcotics accurately, enhancing operational reach and speed. This seamless integration into existing workflows exemplifies its role as a capability-expanding tool.\n\nRequirements:\n\nThe value category must be exactly one of: \"Efficiency Amplifier,\" \"Capability Enhancer,\" or \"Breakthrough Enabler.\"\n\nAvoid generic statements; ground your analysis in specific details from the use case.\n\nEnsure clarity, precision, and logical consistency in your justification."
+            }
+          }
+        }
+      },
+      "name": "value_categorization",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        100
+      ],
+      "id": "5748f012-1d8c-4a4d-8569-d6b34fc7ad15"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "906fc046-d76e-42db-8265-5d1179f27674",
+              "name": "value_category",
+              "value": "={{ $json.response.text.match(/CATEGORY:\\s*(Efficiency Amplifier|Capability Enhancer|Breakthrough Enabler)/)[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "9f78b79a-9cad-453f-be9e-c14ed309744a",
+              "name": "value_category_rationale",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        100
+      ],
+      "id": "ac1e81d9-379d-42c4-a95e-1070fc30a9de",
+      "name": "xform_value_categorization"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "includeUnpaired": true
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        660,
+        100
+      ],
+      "id": "e24a8382-d5f3-45e2-a08d-e3041b62b336",
+      "name": "merge_value_categorization"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "stakeholders",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        580
+      ],
+      "id": "9556aba9-0c8d-4ff2-8e3b-0d57b65d5950",
+      "name": "xform_stakeholders"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "includeUnpaired": true
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        660,
+        580
+      ],
+      "id": "7909448e-51bf-410a-a930-bdc7bc4406eb",
+      "name": "merge_stakeholders"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "technical_elements",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        340
+      ],
+      "id": "edd9262e-1506-4983-be32-ded3fdbec931",
+      "name": "xform_technical_elements"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "includeUnpaired": true
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        660,
+        340
+      ],
+      "id": "7b723f32-2d69-48e7-acd3-9abc501a82d3",
+      "name": "merge_technical_elements"
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=User: A chat between a serious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and very human insightful answers to the user's questions and requests. Based on the provided use case details, analyze and identify the technical elements required for this AI solution. Consider both AI/ML components and supporting infrastructure.\n\nPlease analyze the technical elements across these categories:\n1. Data Elements: Input data requirements, data flows, data storage/processing needs\n2. AI/ML Components: Models, algorithms, training requirements, inference needs\n3. Infrastructure Components: Computing resources, networking, storage, security requirements\n4. Integration Elements: APIs, interfaces, data exchange requirements\n5. Operational Requirements: Monitoring, maintenance, scaling considerations\n\nProvide your response in this structure:\n\n##Technical Architecture Overview:\nAnalyze how the different technical components work together to deliver the solution, including:\n- High-level architecture description\n- Key technical dependencies\n- Critical system interactions\n- Performance considerations\n- Security and compliance requirements\n\n##Technical Components List\nCOMPONENTS:\n- Data: [comma-separated list of data components and requirements]\n- AI/ML: [comma-separated list of AI/ML components and requirements]\n- Infrastructure: [comma-separated list of infrastructure components]\n- Integration: [comma-separated list of integration requirements]\n- Operations: [comma-separated list of operational requirements]\n\n##Implementation Considerations:\nDescribe the key technical considerations and challenges that need to be addressed for successful implementation, including:\n- Technical risks and mitigations\n- Critical dependencies\n- Performance requirements\n- Security requirements\n- Scaling considerations\n\n<AI_Use_Case_Details>\n*Problem Statement that inspired the AI Use Case: {{ $json.problem_statement }}\n*Use Case Name: {{ $json.use_case_name }}\n*Agency: {{ $json.agency }}\n*Bureau: {{ $json.bureau }}\n*Use Case Topic Area: {{ $json.topic_area }}\n*What is the intended purpose and expected benefits of the AI?\": {{ $json.purpose_benefits }}\n*Describe the AI system's outputs.: {{ $json.outputs }}\n*Is the AI use case Safety or Rights impacting?: {{ $json.sri }}\n*Solution Assertion: {{ $json.solution_assertion }}\n*Value Category: {{ $json.value_category }}\n*Value Category Rationale: {{ $json.value_category_rationale }}\n</AI_Use_Case_Details>\n\nRemember: Focus on identifying all necessary technical components while considering:\n- Alignment with stated problem and solution\n- Support for identified stakeholder needs\n- Appropriateness for value category\n- Technical feasibility and scalability\n- Security and compliance requirements\n\nIMPORTANT: The COMPONENTS: section must be included exactly as formatted above for automated processing."
+            }
+          }
+        }
+      },
+      "name": "technical_elements",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        340
+      ],
+      "id": "a35e3eec-9212-4dfa-bf06-114a37f0a1b5"
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=Review the information provided in <AI_Use_Case_Details>:\n\n<AI_Use_Case_Details>\n*Use Case Name: {{ $json.use_case_name }}\n*Agency: {{ $json.agency }}\n*Bureau: {{ $json.bureau }}\n*Use Case Topic Area: {{ $json.topic_area }}\n*Intended Purpose and Expected Benefits: {{ $json.purpose_benefits }}\n*AI System Outputs: {{ $json.outputs }}\n*Safety or Rights Impact: {{ $json.sri }}\n*Problem Statement: {{ $json.problem_statement }}\n*Solution Assertion: {{ $json.solution_assertion }}\n*Value Category: {{ $json.value_category_rationale }}\n*Value Category Rationale: {{ $json.value_category_rationale }}\n*Technical Elements {{ $json.technical_elements}}\n</AI_Use_Case_Details>\n\nBased on the AI use case provided in <AI_Use_Case_Details>, analyze the AI use case and generate a comprehensive stakeholder analysis following the standardized template. For each section:\n\n1. Identify specific roles and responsibilities rather than generic groups\n2. Detail clear relationships and dependencies between stakeholders\n\nStakeholder Analysis\n\nMission Interests:\n- Subject Matter Experts: [Domain specialists]\n- Field Personnel: [Operational staff]\n- Supervisory Staff: [Managerial roles]\n\nExternal Stakeholders\n- Partner Agencies: [Collaborating organizations]\n- Regulated Entities or Demographics: [Regulatory/compliance/Law Enforcement entities]\n- Private Private Sector Interests: [Economic, bureaucratic, public service intersections\n- Public Impact: [Affected populations]"
+            }
+          }
+        }
+      },
+      "name": "stakeholders",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        580
+      ],
+      "id": "8b7791d9-e961-4f22-a48d-4acd7d429241"
+    },
+    {
+      "parameters": {
+        "model": "llama3.3:latest",
+        "options": {
+          "temperature": 0.8
+        }
+      },
+      "name": "gen_Ollama",
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        140
+      ],
+      "id": "33454425-398a-4790-8454-e87fa4da75cd",
+      "credentials": {
+        "ollamaApi": {
+          "id": "Xs0CVGyuRDgyMzmS",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        -360,
+        140
+      ],
+      "id": "93ac1657-8981-487b-b214-eed75fb67771",
+      "name": "genOpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "IBjIhzVhyTJftXp2",
+          "name": "mcsOpenAi"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {}
+      }
+    ]
+  },
+  "connections": {
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "SelectPassThrough",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "GetUseCases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetUseCases": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SelectPassThrough": {
+      "main": [
+        [
+          {
+            "node": "prob_state",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_prob_state",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xform_prob_state": {
+      "main": [
+        [
+          {
+            "node": "merge_prob_state",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "solution_assertion": {
+      "main": [
+        [
+          {
+            "node": "xform_solution_assertion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "prob_state": {
+      "main": [
+        [
+          {
+            "node": "xform_prob_state",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xform_solution_assertion": {
+      "main": [
+        [
+          {
+            "node": "merge_solution_assertion",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "merge_prob_state": {
+      "main": [
+        [
+          {
+            "node": "solution_assertion",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_solution_assertion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "merge_solution_assertion": {
+      "main": [
+        [
+          {
+            "node": "merge_value_categorization",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "value_categorization",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "value_categorization": {
+      "main": [
+        [
+          {
+            "node": "xform_value_categorization",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xform_value_categorization": {
+      "main": [
+        [
+          {
+            "node": "merge_value_categorization",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "merge_value_categorization": {
+      "main": [
+        [
+          {
+            "node": "merge_technical_elements",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "technical_elements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xform_stakeholders": {
+      "main": [
+        [
+          {
+            "node": "merge_stakeholders",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "merge_stakeholders": {
+      "main": [
+        [
+          {
+            "node": "writeResults",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xform_technical_elements": {
+      "main": [
+        [
+          {
+            "node": "merge_technical_elements",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "merge_technical_elements": {
+      "main": [
+        [
+          {
+            "node": "stakeholders",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_stakeholders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "technical_elements": {
+      "main": [
+        [
+          {
+            "node": "xform_technical_elements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "stakeholders": {
+      "main": [
+        [
+          {
+            "node": "xform_stakeholders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "genOpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "prob_state",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "solution_assertion",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "value_categorization",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "stakeholders",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "technical_elements",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "writeResults": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "8534eafe-8fbf-45dc-9f34-cba3ea7b3c70",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b9dd56d2cf9c95665f736d8118fdcd1b7542ce4be18ec96422287c9a5d31edcf"
+  },
+  "id": "bYWBl6rcGLIpDvOu",
+  "tags": [
+    {
+      "createdAt": "2025-01-24T04:48:28.060Z",
+      "updatedAt": "2025-01-24T04:48:28.060Z",
+      "id": "nuttGlDUNZUuQ1Pe",
+      "name": "AI_Use_Case_Analysis"
+    }
+  ]
+}

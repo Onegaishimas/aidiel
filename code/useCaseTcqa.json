@@ -1,0 +1,1497 @@
+{
+  "name": "useCaseTcqa",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        40,
+        -620
+      ],
+      "id": "5f4a6252-1ae9-4593-ac6f-6ea6abc7c75d",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -620
+      ],
+      "id": "382d6ba4-68f0-492b-b848-490900923703",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -180,
+        -620
+      ],
+      "id": "225af154-a311-487c-b66e-60171bfef1b7",
+      "name": "GetUseCases",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "45859e6b-2921-450f-bd28-1c717b0ababf",
+              "name": "use_case_Id",
+              "value": "={{ $json.use_case_Id }}",
+              "type": "string"
+            },
+            {
+              "id": "784c5644-4410-445d-ab30-3d8b374afe6d",
+              "name": "use_case_name",
+              "value": "={{ $json.use_case_name }}",
+              "type": "string"
+            },
+            {
+              "id": "9aaa4f1d-9d9e-4f6b-a53d-3d7c313253ce",
+              "name": "agency",
+              "value": "={{ $json.agency }}",
+              "type": "string"
+            },
+            {
+              "id": "80f3c0d5-83ed-45c0-8482-d7076dab74d6",
+              "name": "abr",
+              "value": "={{ $json.abr }}",
+              "type": "string"
+            },
+            {
+              "id": "d00b5356-48d1-4c1c-b0ec-fbf132680e8e",
+              "name": "bureau",
+              "value": "={{ $json.bureau }}",
+              "type": "string"
+            },
+            {
+              "id": "0f42743f-cd7c-4f3e-a8fe-e35a6b207b2d",
+              "name": "topic_area",
+              "value": "={{ $json.topic_area }}",
+              "type": "string"
+            },
+            {
+              "id": "84c1a261-5b58-4722-a63d-7a84405d5a41",
+              "name": "commercial_ai",
+              "value": "={{ $json.commercial_ai }}",
+              "type": "string"
+            },
+            {
+              "id": "90b9aa85-cd7d-44ce-8526-a6509c05e8f6",
+              "name": "purpose_benefits",
+              "value": "={{ $json.purpose_benefits }}",
+              "type": "string"
+            },
+            {
+              "id": "29d04ef7-c4e9-41a8-bc3a-7ad52b52cca2",
+              "name": "outputs",
+              "value": "={{ $json.outputs }}",
+              "type": "string"
+            },
+            {
+              "id": "e3767bc6-3b46-4216-90c9-57dff362deaf",
+              "name": "sri",
+              "value": "={{ $json.sri }}",
+              "type": "string"
+            },
+            {
+              "id": "5f4f9202-a4ef-4577-99d9-76d9ac847a73",
+              "name": "problem_statement",
+              "value": "={{ $json.problem_statement }}",
+              "type": "string"
+            },
+            {
+              "id": "4fe4252d-4580-4ec3-9f15-23352b1cc819",
+              "name": "solution_assertion",
+              "value": "={{ $json.solution_assertion }}",
+              "type": "string"
+            },
+            {
+              "id": "0411ef98-7d39-49e4-8ce3-9d052a692462",
+              "name": "value_category",
+              "value": "={{ $json.value_category }}",
+              "type": "string"
+            },
+            {
+              "id": "20ea967f-3486-45a3-b127-58e92e3b91e2",
+              "name": "value_category_rationale",
+              "value": "={{ $json.value_category_rationale }}",
+              "type": "string"
+            },
+            {
+              "id": "1e246b73-1b8c-40b8-8bff-b23474dd68c5",
+              "name": "technical_elements",
+              "value": "={{ $json.technical_elements }}",
+              "type": "string"
+            },
+            {
+              "id": "006c86b0-7124-4832-a166-73672e095ece",
+              "name": "stakeholders",
+              "value": "={{ $json.stakeholders }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -620
+      ],
+      "id": "a6e44b1b-ba26-4d71-8f42-8ef453fa05bd",
+      "name": "SelectPassThrough"
+    },
+    {
+      "parameters": {
+        "model": "llama3.3:latest",
+        "options": {
+          "temperature": 0.8
+        }
+      },
+      "name": "gen_Ollama",
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        140
+      ],
+      "id": "521ef110-d197-4c71-85f1-3488ca34281d"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        -360,
+        140
+      ],
+      "id": "bfa23624-dae0-429b-b4ff-488ceebc3519",
+      "name": "genOpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "IBjIhzVhyTJftXp2",
+          "name": "mcsOpenAi"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Topic": "={{ $json.Topic }}",
+            "Context": "={{ $json.Context }}",
+            "Question": "={{ $json.Question }}",
+            "Answer": "={{ $json.Answer }}",
+            "use_case_id": "={{ $json[\"Use Case ID\"] }}",
+            "use_case_name": "={{ $json[\"Use Case Name\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "use_case_id",
+              "displayName": "use_case_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "use_case_name",
+              "displayName": "use_case_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Context",
+              "displayName": "Context",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Question",
+              "displayName": "Question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Answer",
+              "displayName": "Answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        -380
+      ],
+      "id": "87d7c589-bba9-4549-a2ef-4770d0aaf3ad",
+      "name": "write_PS_Tcqa",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Topic": "={{ $json.Topic }}",
+            "Context": "={{ $json.Context }}",
+            "Question": "={{ $json.Question }}",
+            "Answer": "={{ $json.Answer }}",
+            "use_case_Id": "={{ $json[\"Use Case ID\"] }}",
+            "use_case_name": "={{ $json[\"Use Case Name\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "use_case_Id",
+              "displayName": "use_case_Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "use_case_name",
+              "displayName": "use_case_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Context",
+              "displayName": "Context",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Question",
+              "displayName": "Question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Answer",
+              "displayName": "Answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        -140
+      ],
+      "id": "bb3d74be-f4fb-428f-9c7a-4efebcdb6f50",
+      "name": "write_SA_Tcqa",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        800,
+        -140
+      ],
+      "id": "9b48e3b3-8e37-4c4c-ba37-9f26cba1388d",
+      "name": "merge_sa"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.all(); // Read all input rows from Google Sheets\nlet output = [];\n\n\ninputData.forEach(data => {\n    // Ensure we retrieve the values from the JSON payload correctly\n    const useCaseId = $input.first().json.use_case_Id || \"Unknown ID\";\n    const useCaseName = $input.first().json.use_case_name || \"Unknown Use Case\";\n  // Extract the OpenAI response text\n    const rawText = data.json[\"tcqa_ps\"];\n\n    if (typeof rawText === \"string\") {\n        // Split into individual T/C/Q/A sections using the delimiter ### END ###\n        const sections = rawText.split(\"### END ###\").map(section => section.trim()).filter(Boolean);\n\n        sections.forEach(section => {\n            const topicMatch = section.match(/\\*\\*Topic:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Context:)/);\n            const contextMatch = section.match(/\\*\\*Context:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Question:)/);\n            const questionMatch = section.match(/\\*\\*Question:\\*\\* ([^\\n]+)/);\n            const answerMatch = section.match(/\\*\\*Answer:\\*\\* ([\\s\\S]*?)(?=\\n### END|$)/);\n\n            // Add extracted data with use_case_id and use_case_name prepended\n            output.push({\n                json: {\n                    \"Use Case ID\": useCaseId,\n                    \"Use Case Name\": useCaseName,\n                    \"Topic\": topicMatch ? topicMatch[1].trim() : \"\",\n                    \"Context\": contextMatch ? contextMatch[1].trim() : \"\",\n                    \"Question\": questionMatch ? questionMatch[1].trim() : \"\",\n                    \"Answer\": answerMatch ? answerMatch[1].trim() : \"\"\n                }\n            });\n        });\n    }\n});\n\n// Return structured rows to be written to Google Sheets\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        -380
+      ],
+      "id": "2853c93f-f19e-4304-ac64-b4955774d528",
+      "name": "code_ps"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.all(); // Read all input rows from Google Sheets\nlet output = [];\n\ninputData.forEach(data => {\n    // Ensure we retrieve the values from the JSON payload correctly\n    const useCaseId = $input.first().json.use_case_Id || \"Unknown ID\";\n    const useCaseName = $input.first().json.use_case_name || \"Unknown Use Case\";\n  // Extract the OpenAI response text\n    const rawText = $input.first().json.tcqa_sa;\n    \n    if (typeof rawText === \"string\") {\n        // Split into individual T/C/Q/A sections using the delimiter ### END ###\n        const sections = rawText.split(\"### END ###\").map(section => section.trim()).filter(Boolean);\n\n        sections.forEach(section => {\n            const topicMatch = section.match(/\\*\\*Topic:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Context:)/);\n            const contextMatch = section.match(/\\*\\*Context:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Question:)/);\n            const questionMatch = section.match(/\\*\\*Question:\\*\\* ([^\\n]+)/);\n            const answerMatch = section.match(/\\*\\*Answer:\\*\\* ([\\s\\S]*?)(?=\\n### END|$)/);\n\n            // Add extracted data with use_case_id and use_case_name prepended\n            output.push({\n                json: {\n                    \"Use Case ID\": useCaseId,\n                    \"Use Case Name\": useCaseName,\n                    \"Topic\": topicMatch ? topicMatch[1].trim() : \"\",\n                    \"Context\": contextMatch ? contextMatch[1].trim() : \"\",\n                    \"Question\": questionMatch ? questionMatch[1].trim() : \"\",\n                    \"Answer\": answerMatch ? answerMatch[1].trim() : \"\"\n                }\n            });\n        });\n    }\n});\n\n// Return structured rows to be written to Google Sheets\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        -140
+      ],
+      "id": "6c054742-4895-4262-bfd9-ea1ef4303cb6",
+      "name": "code_sa"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "tcqa_ps",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -380
+      ],
+      "id": "21e1a37c-6ac7-4569-9358-cddb0468be9f",
+      "name": "xform_ps"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "tcqa_sa",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -140
+      ],
+      "id": "38a29d31-2f0f-460c-8bd1-f5a31461b184",
+      "name": "xform_sa"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        800,
+        -380
+      ],
+      "id": "d3545718-3e32-4307-b414-dd8aa02a5173",
+      "name": "merge_ps"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Topic": "={{ $json.Topic }}",
+            "Context": "={{ $json.Context }}",
+            "Question": "={{ $json.Question }}",
+            "Answer": "={{ $json.Answer }}",
+            "use_case_Id": "={{ $json[\"Use Case ID\"] }}",
+            "use_case_name": "={{ $json[\"Use Case Name\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "use_case_Id",
+              "displayName": "use_case_Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "use_case_name",
+              "displayName": "use_case_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Context",
+              "displayName": "Context",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Question",
+              "displayName": "Question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Answer",
+              "displayName": "Answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        100
+      ],
+      "id": "5999f483-b882-4c6f-ba27-c0bcd7378f13",
+      "name": "write_VC_Tcqa",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.all(); // Read all input rows from Google Sheets\nlet output = [];\n\ninputData.forEach(data => {\n    // Ensure we retrieve the values from the JSON payload correctly\n    const useCaseId = $input.first().json.use_case_Id || \"Unknown ID\";\n    const useCaseName = $input.first().json.use_case_name || \"Unknown Use Case\";\n  // Extract the OpenAI response text\n    const rawText = $input.first().json.tcqa_vc;\n    \n    if (typeof rawText === \"string\") {\n        // Split into individual T/C/Q/A sections using the delimiter ### END ###\n        const sections = rawText.split(\"### END ###\").map(section => section.trim()).filter(Boolean);\n\n        sections.forEach(section => {\n            const topicMatch = section.match(/\\*\\*Topic:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Context:)/);\n            const contextMatch = section.match(/\\*\\*Context:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Question:)/);\n            const questionMatch = section.match(/\\*\\*Question:\\*\\* ([^\\n]+)/);\n            const answerMatch = section.match(/\\*\\*Answer:\\*\\* ([\\s\\S]*?)(?=\\n### END|$)/);\n\n            // Add extracted data with use_case_id and use_case_name prepended\n            output.push({\n                json: {\n                    \"Use Case ID\": useCaseId,\n                    \"Use Case Name\": useCaseName,\n                    \"Topic\": topicMatch ? topicMatch[1].trim() : \"\",\n                    \"Context\": contextMatch ? contextMatch[1].trim() : \"\",\n                    \"Question\": questionMatch ? questionMatch[1].trim() : \"\",\n                    \"Answer\": answerMatch ? answerMatch[1].trim() : \"\"\n                }\n            });\n        });\n    }\n});\n\n// Return structured rows to be written to Google Sheets\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        100
+      ],
+      "id": "f689696b-a260-45db-8097-ce580a9d3bbe",
+      "name": "code_vc"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        800,
+        100
+      ],
+      "id": "a72dd41d-2c7e-43da-a19f-f9c0fb53789b",
+      "name": "merge_vc"
+    },
+    {
+      "parameters": {
+        "chunkSize": 5000,
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=Generate exactly **five** structured \"Topic | Context | Question | Answer\" groups based on the provided AI use case details. \nEnsure strict adherence to the following format:\n\n---\n### **Topic:** [Insert Topic Here]\n**Context:** [Provide a brief description of the background and significance.]\n**Question:** [Provide a clear, structured question related to the AI use case.]\n**Answer:** [Provide a structured and informative answer.]\n### END ###\n---\n\n**AI Use Case Details:**\n- **Use Case ID:** {{$json[\"use_case_Id\"]}}\n- **Use Case Name:** {{$json[\"use_case_name\"]}}\n- **Problem Statement:** {{$json[\"problem_statement\"]}}\n\n⚠️ IMPORTANT: \n- Do **not** include introductory or concluding text.\n- Abstract and generalize references to specific agency(s), bureau(s), and other specific organizational considerations.\n- Abstract and generalize references to activities and goals in terms of specific missions.  \n- Ensure each `Topic`, `Context`, `Question`, and `Answer` appears on a separate line.\n- Separate each group using `### END ###`.\n- The response **must** contain exactly five structured groups.\n\nAssistant:\n"
+            }
+          }
+        }
+      },
+      "name": "langchain_ps",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        -380
+      ],
+      "id": "2ce74e9b-3ce3-42b7-af88-61731fed7f95"
+    },
+    {
+      "parameters": {
+        "operationMode": "nodeInputBinary",
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=Generate exactly **five** structured \"Topic | Context | Question | Answer\" groups based on the provided AI use case details. \nEnsure strict adherence to the following format:\n\n---\n### **Topic:** [Insert Topic Here]\n**Context:** [Provide a brief description of the background and significance.]\n**Question:** [Provide a clear, structured question related to the AI use case.]\n**Answer:** [Provide a structured and informative answer.]\n### END ###\n---\n\n**AI Use Case Details:**\n- **Use Case ID:** {{$json[\"use_case_Id\"]}}\n- **Use Case Name:** {{$json[\"use_case_name\"]}}\n- **Solution Assertion:** {{ $json.solution_assertion }}\n\n⚠️ IMPORTANT: \n- Do **not** include introductory or concluding text.\n- Abstract and generalize references to specific agency(s), bureau(s), and other specific organizational considerations.\n- Abstract and generalize references to activities and goals in terms of specific missions.  \n- Ensure each `Topic`, `Context`, `Question`, and `Answer` appears on a separate line.\n- Separate each group using `### END ###`.\n- The response **must** contain exactly five structured groups.\n\nAssistant:\n"
+            }
+          }
+        }
+      },
+      "name": "langchain_sa",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        -140
+      ],
+      "id": "62983307-02dc-46a6-8445-5c22c49b2cd7"
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "stuff",
+              "prompt": "=Generate exactly **five** structured \"Topic | Context | Question | Answer\" groups based on the provided AI use case details. \nEnsure strict adherence to the following format:\n\n---\n### **Topic:** [Insert Topic Here]\n**Context:** [Provide a brief description of the background and significance.]\n**Question:** [Provide a clear, structured question related to the AI use case.]\n**Answer:** [Provide a structured and informative answer.]\n### END ###\n---\n\n**AI Use Case Details:**\n- **Use Case ID:** {{$json[\"use_case_Id\"]}}\n- **Use Case Name:** {{$json[\"use_case_name\"]}}\n- **Value Category Rationale:** {{ $json.value_category_rationale }}\n\n⚠️ IMPORTANT: \n- Do **not** include introductory or concluding text.\n- Abstract and generalize references to specific agency(s), bureau(s), and other specific organizational considerations.\n- Abstract and generalize references to activities and goals in terms of specific missions.  \n- Ensure each `Topic`, `Context`, `Question`, and `Answer` appears on a separate line.\n- Separate each group using `### END ###`.\n- The response **must** contain exactly five structured groups.\n\nAssistant:\n"
+            }
+          }
+        }
+      },
+      "name": "langchain_vc",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        100
+      ],
+      "id": "49c4cfeb-94f8-412e-9f30-b73f357b5e75"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "tcqa_vc",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        100
+      ],
+      "id": "9273fad3-6875-4c1a-ab50-06e9fdaa1893",
+      "name": "xform_vc"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "tcqa_te",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        340
+      ],
+      "id": "88f4f1c5-f748-4af6-b60f-daa53fbe001d",
+      "name": "xform_te"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        800,
+        340
+      ],
+      "id": "2fff6b40-a496-4665-8278-24c9b1e4fecd",
+      "name": "merge_te"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.all(); // Read all input rows from Google Sheets\nlet output = [];\n\ninputData.forEach(data => {\n    // Ensure we retrieve the values from the JSON payload correctly\n    const useCaseId = $input.first().json.use_case_Id || \"Unknown ID\";\n    const useCaseName = $input.first().json.use_case_name || \"Unknown Use Case\";\n  // Extract the OpenAI response text\n    const rawText = $input.first().json.tcqa_te;\n    \n    if (typeof rawText === \"string\") {\n        // Split into individual T/C/Q/A sections using the delimiter ### END ###\n        const sections = rawText.split(\"### END ###\").map(section => section.trim()).filter(Boolean);\n\n        sections.forEach(section => {\n            const topicMatch = section.match(/\\*\\*Topic:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Context:)/);\n            const contextMatch = section.match(/\\*\\*Context:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Question:)/);\n            const questionMatch = section.match(/\\*\\*Question:\\*\\* ([^\\n]+)/);\n            const answerMatch = section.match(/\\*\\*Answer:\\*\\* ([\\s\\S]*?)(?=\\n### END|$)/);\n\n            // Add extracted data with use_case_id and use_case_name prepended\n            output.push({\n                json: {\n                    \"Use Case ID\": useCaseId,\n                    \"Use Case Name\": useCaseName,\n                    \"Topic\": topicMatch ? topicMatch[1].trim() : \"\",\n                    \"Context\": contextMatch ? contextMatch[1].trim() : \"\",\n                    \"Question\": questionMatch ? questionMatch[1].trim() : \"\",\n                    \"Answer\": answerMatch ? answerMatch[1].trim() : \"\"\n                }\n            });\n        });\n    }\n});\n\n// Return structured rows to be written to Google Sheets\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        340
+      ],
+      "id": "2c093764-2b4a-4b4e-985e-960810f22e60",
+      "name": "code_te"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Topic": "={{ $json.Topic }}",
+            "Context": "={{ $json.Context }}",
+            "Question": "={{ $json.Question }}",
+            "Answer": "={{ $json.Answer }}",
+            "use_case_Id": "={{ $json[\"Use Case ID\"] }}",
+            "use_case_name": "={{ $json[\"Use Case Name\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "use_case_Id",
+              "displayName": "use_case_Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "use_case_name",
+              "displayName": "use_case_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Context",
+              "displayName": "Context",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Question",
+              "displayName": "Question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Answer",
+              "displayName": "Answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        340
+      ],
+      "id": "db29684d-cb23-40c2-afa3-9156ce137ad4",
+      "name": "write_TE_Tcqa",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=Generate exactly **five** structured \"Topic | Context | Question | Answer\" groups based on the provided AI use case details. \nEnsure strict adherence to the following format:\n\n---\n### **Topic:** [Insert Topic Here]\n**Context:** [Provide a brief description of the background and significance.]\n**Question:** [Provide a clear, structured question related to the AI use case.]\n**Answer:** [Provide a structured and informative answer.]\n### END ###\n---\n\n**AI Use Case Details:**\n- **Use Case ID:** {{$json[\"use_case_Id\"]}}\n- **Use Case Name:** {{$json[\"use_case_name\"]}}\n- **Technical Elements:** {{ $json.technical_elements }}\n\n⚠️ IMPORTANT: \n- Do **not** include introductory or concluding text.\n- Abstract and generalize references to specific agency(s), bureau(s), and other specific organizational considerations.\n- Abstract and generalize references to activities and goals in terms of specific missions.  \n- Ensure each `Topic`, `Context`, `Question`, and `Answer` appears on a separate line.\n- Separate each group using `### END ###`.\n- The response **must** contain exactly five structured groups.\n\nAssistant:\n"
+            }
+          }
+        }
+      },
+      "name": "langchain_te",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        340
+      ],
+      "id": "6808ca62-3977-4bc6-987d-aba052d3cca0"
+    },
+    {
+      "parameters": {
+        "chunkingMode": "advanced",
+        "options": {
+          "summarizationMethodAndPrompts": {
+            "values": {
+              "summarizationMethod": "=stuff",
+              "prompt": "=Generate exactly **five** structured \"Topic | Context | Question | Answer\" groups based on the provided AI use case details. \nEnsure strict adherence to the following format:\n\n---\n### **Topic:** [Insert Topic Here]\n**Context:** [Provide a brief description of the background and significance.]\n**Question:** [Provide a clear, structured question related to the AI use case.]\n**Answer:** [Provide a structured and informative answer.]\n### END ###\n---\n\n**AI Use Case Details:**\n- **Use Case ID:** {{$json[\"use_case_Id\"]}}\n- **Use Case Name:** {{$json[\"use_case_name\"]}}\n- **Stakeholders:** {{ $json.stakeholders }}\n\n⚠️ IMPORTANT: \n- Do **not** include introductory or concluding text.\n- Abstract and generalize references to specific agency(s), bureau(s), and other specific organizational considerations.\n- Abstract and generalize references to activities and goals in terms of specific missions.  \n- Ensure each `Topic`, `Context`, `Question`, and `Answer` appears on a separate line.\n- Separate each group using `### END ###`.\n- The response **must** contain exactly five structured groups.\n\nAssistant:\n"
+            }
+          }
+        }
+      },
+      "name": "langchain_sh",
+      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        580
+      ],
+      "id": "852b09e8-724f-4c3f-8352-5b3cbadd34b8"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        800,
+        580
+      ],
+      "id": "2d213b1c-082c-4319-bf95-f298190f2b19",
+      "name": "merge_sh"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.all(); // Read all input rows from Google Sheets\nlet output = [];\n\ninputData.forEach(data => {\n    // Ensure we retrieve the values from the JSON payload correctly\n    const useCaseId = $input.first().json.use_case_Id || \"Unknown ID\";\n    const useCaseName = $input.first().json.use_case_name || \"Unknown Use Case\";\n  // Extract the OpenAI response text\n    const rawText = $input.first().json.tcqa_sh;\n    \n    if (typeof rawText === \"string\") {\n        // Split into individual T/C/Q/A sections using the delimiter ### END ###\n        const sections = rawText.split(\"### END ###\").map(section => section.trim()).filter(Boolean);\n\n        sections.forEach(section => {\n            const topicMatch = section.match(/\\*\\*Topic:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Context:)/);\n            const contextMatch = section.match(/\\*\\*Context:\\*\\* ([\\s\\S]*?)(?=\\n\\*\\*Question:)/);\n            const questionMatch = section.match(/\\*\\*Question:\\*\\* ([^\\n]+)/);\n            const answerMatch = section.match(/\\*\\*Answer:\\*\\* ([\\s\\S]*?)(?=\\n### END|$)/);\n\n            // Add extracted data with use_case_id and use_case_name prepended\n            output.push({\n                json: {\n                    \"Use Case ID\": useCaseId,\n                    \"Use Case Name\": useCaseName,\n                    \"Topic\": topicMatch ? topicMatch[1].trim() : \"\",\n                    \"Context\": contextMatch ? contextMatch[1].trim() : \"\",\n                    \"Question\": questionMatch ? questionMatch[1].trim() : \"\",\n                    \"Answer\": answerMatch ? answerMatch[1].trim() : \"\"\n                }\n            });\n        });\n    }\n});\n\n// Return structured rows to be written to Google Sheets\nreturn output;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        580
+      ],
+      "id": "5810e179-d219-48c3-918b-2408ad53bc10",
+      "name": "code_sh"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "url"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Topic": "={{ $json.Topic }}",
+            "Context": "={{ $json.Context }}",
+            "Question": "={{ $json.Question }}",
+            "Answer": "={{ $json.Answer }}",
+            "use_case_Id": "={{ $json[\"Use Case ID\"] }}",
+            "use_case_name": "={{ $json[\"Use Case Name\"] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "use_case_Id",
+              "displayName": "use_case_Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "use_case_name",
+              "displayName": "use_case_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Topic",
+              "displayName": "Topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Context",
+              "displayName": "Context",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Question",
+              "displayName": "Question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Answer",
+              "displayName": "Answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        580
+      ],
+      "id": "8f8cbe67-47fb-4eb6-b048-1462b480e91a",
+      "name": "write_SH_Tcqa",
+      "credentials": {
+        "googleApi": {
+          "id": "bnWbCG5LX4JJE00q",
+          "name": "mcsGoogle"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a27987e9-f64f-4102-ab0d-01696249fde2",
+              "name": "tcqa_sh",
+              "value": "={{ $json.response.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        580
+      ],
+      "id": "2e20880c-fdc6-4a8c-9685-39ff8078d43e",
+      "name": "xform_sh"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "SelectPassThrough",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "GetUseCases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetUseCases": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SelectPassThrough": {
+      "main": [
+        [
+          {
+            "node": "langchain_ps",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_ps",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "langchain_sa",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_sa",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_vc",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "langchain_vc",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_te",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "langchain_te",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "merge_sh",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "langchain_sh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "genOpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "langchain_ps",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "langchain_sa",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "langchain_vc",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "langchain_te",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "langchain_sh",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "write_PS_Tcqa": {
+      "main": [
+        []
+      ]
+    },
+    "write_SA_Tcqa": {
+      "main": [
+        []
+      ]
+    },
+    "merge_sa": {
+      "main": [
+        [
+          {
+            "node": "code_sa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_ps": {
+      "main": [
+        [
+          {
+            "node": "write_PS_Tcqa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_sa": {
+      "main": [
+        [
+          {
+            "node": "write_SA_Tcqa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xform_ps": {
+      "main": [
+        [
+          {
+            "node": "merge_ps",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "xform_sa": {
+      "main": [
+        [
+          {
+            "node": "merge_sa",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "merge_ps": {
+      "main": [
+        [
+          {
+            "node": "code_ps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_vc": {
+      "main": [
+        [
+          {
+            "node": "write_VC_Tcqa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "merge_vc": {
+      "main": [
+        [
+          {
+            "node": "code_vc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "langchain_ps": {
+      "main": [
+        [
+          {
+            "node": "xform_ps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "langchain_sa": {
+      "main": [
+        [
+          {
+            "node": "xform_sa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "langchain_vc": {
+      "main": [
+        [
+          {
+            "node": "xform_vc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "write_VC_Tcqa": {
+      "main": [
+        []
+      ]
+    },
+    "xform_vc": {
+      "main": [
+        [
+          {
+            "node": "merge_vc",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "xform_te": {
+      "main": [
+        [
+          {
+            "node": "merge_te",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "merge_te": {
+      "main": [
+        [
+          {
+            "node": "code_te",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_te": {
+      "main": [
+        [
+          {
+            "node": "write_TE_Tcqa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "write_TE_Tcqa": {
+      "main": [
+        []
+      ]
+    },
+    "langchain_te": {
+      "main": [
+        [
+          {
+            "node": "xform_te",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "langchain_sh": {
+      "main": [
+        [
+          {
+            "node": "xform_sh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "merge_sh": {
+      "main": [
+        [
+          {
+            "node": "code_sh",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code_sh": {
+      "main": [
+        [
+          {
+            "node": "write_SH_Tcqa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xform_sh": {
+      "main": [
+        [
+          {
+            "node": "merge_sh",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "write_SH_Tcqa": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "093d3d8f-afe5-4876-8d83-3200ed885d27",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b9dd56d2cf9c95665f736d8118fdcd1b7542ce4be18ec96422287c9a5d31edcf"
+  },
+  "id": "aYPhz2rQRem8Jvoj",
+  "tags": [
+    {
+      "createdAt": "2025-01-24T04:48:28.060Z",
+      "updatedAt": "2025-01-24T04:48:28.060Z",
+      "id": "nuttGlDUNZUuQ1Pe",
+      "name": "AI_Use_Case_Analysis"
+    }
+  ]
+}
