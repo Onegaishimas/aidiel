@@ -1,4 +1,4 @@
-# AI Use Case TOPIC|CONTEXT|QUESTION|ANSWER (tcqa) group prompts
+## AI Use Case TOPIC|CONTEXT|QUESTION|ANSWER (tcqa) group prompts
 
 This prompt generates five tcqa groups per use case derived from the use case's repective improvement elements.
 
