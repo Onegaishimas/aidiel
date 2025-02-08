@@ -1,77 +1,62 @@
-# aidistill
+# AIDIEL Project Overview
 
-# Federal AI Use Case Analysis Framework
+## AI-Driven Information Enrichment Loop
 
-This repository contains tools and documentation for analyzing and enhancing federal artificial intelligence (AI) use case documentation through structured analysis frameworks and automated processing workflows.
+### Project Vision
+Welcome to the AIDIEL project, where we're demonstrating an innovative approach to creating self-improving AI systems. Our project takes federal AI use case data and transforms it into a continuously enriching knowledge base that helps organizations identify and implement AI opportunities.
 
-## Repository Structure
+### What We're Building
+The project aims to build an end-to-end AI-powered system using the FY24 Federal AI Use Case Inventory as its foundation. Through sophisticated enrichment processes, the initial dataset will be enhanced to extract deeper insights and patterns. This enriched data will be transformed into synthetic training materials for specialized AI models. These models will power an interactive system designed to help organizations discover and implement AI opportunities within their own contexts. As organizations use the system and generate new use cases, those which are genuinely new, or provide reinforcement or depth to a particular aspect of the LLM in use, will feed back into the knowledge base, creating a self-improving cycle of AI knowledge and implementation.
 
-```
-.
-├── code/                  # Workflow automation scripts
-├── doc/                   # Framework documentation
-├── original/              # Source inventory data
-└── processed/             # Enhanced inventory files
-```
+### Current Status
+- ✓ Completed: Initial data analysis, data enrichment, and synthetic dataset creation
+- → Active: Developing the interactive AI system and feedback loop
+- Our focus: Steps 4-7 of the project lifecycle
 
-## Components
+### Technical Components
+Our work spans five core competency areas:
+- Core Model Training: Fine-tuning LLMs and implementing LoRA
+- Basic UI Development: Creating intuitive interfaces for AI interaction
+- Application Business Logic: Building robust system architecture
+- Linguistic Analysis: Understanding and optimizing language patterns
+- Prompt Engineering: Crafting effective AI interactions using LS and LP controls
 
-### Code
-- `useCaseImprovement.json` - Workflow for enhancing AI use case documentation with structured analysis elements
-- `useCaseTcqa.json` - Workflow for generating training data through topic-context-question-answer (TCQA) analysis
+### Key Linguistic Logic Controls
+The project implements two types of prompt control mechanisms:
 
-### Documentation
-- `Improvement_Elements.md` - Defines the structured elements used for enhancing use case documentation:
-  - Problem Statements
-  - Solution Assertions
-  - Value Categories
-  - Technical Elements
-  - Stakeholder Analysis
-  
-- `Improvement_Elements-Prompts.md` - Contains the prompt templates used for generating enhancement elements
-- `Improvement_Elements-TCQA-Prompts.md` - Contains prompt templates for generating training data from enhanced use cases
+1. "Linguistic Switches" (LS) - Binary or multi-choice prompt elements that can be toggled through the UI to activate or deactivate specific types of analysis, recommendations, or outputs. LS serve as clear decision points in the AI's reasoning process.
 
-### Data Files
-- **Original/**
-  - Source inventory files from federal AI use case collection efforts
-  - Raw data in Excel and ZIP formats
+2. "Linguistic Potentiometers" (LP) - Variable prompt elements that can be adjusted along a spectrum through the UI, allowing fine-tuned control over aspects like detail level, creativity, or technical depth in AI responses.
 
-- **Processed/**
-  - Enhanced inventory files with additional analytical elements
-  - Derived training data sets generated through TCQA analysis
+These LS and LP mechanisms work together to provide precise control over the AI's analysis and output generation.
 
-## Usage
+### Development Approach
+- Agile methodology with sprints
+- Task distribution based on individual strengths
+- Continuous integration of components
+- Regular knowledge sharing sessions
+- Focus on modular, maintainable code
 
-1. Original inventory data is processed using the n8n `useCaseImprovement.json` workflow to add structured analytical elements
-2. Enhanced use cases are further processed using the n8n `useCaseTcqa.json` workflow to generate training data
-3. Results are stored in the processed directory in Excel format
+### Team Structure
+- Product Management: Jim and Sean
+- Development Team (4 Interns): Implementation across core competencies
+- Each team member contributes based on their strengths across our five core areas
 
-## Documentation
+### Next Steps
+1. Development of high-level business and functional requirements
+2. Translation of requirements into given-when-then statements (GWTS)
+3. Creation of user stories from GWTS
+4. Story estimation and backlog creation
+5. Backlog grooming and prioritization
+6. Individual strength assessment across core competencies
+7. Sprint planning optimized for intern strengths
+8. Environment setup and knowledge transfer
 
-See the `doc/` directory for detailed information about:
-- Analysis framework elements and definitions
-- Prompt templates and usage guidelines
-- Data structure specifications
-- Processing workflow details
+### Success Metrics
+- Functional AI interview system
+- Quality of generated use case artifacts
+- System's ability to learn from new inputs
+- Usefulness of AI recommendations
+- Code quality and documentation
 
-## Data Files
-
-### Original Data
-- `2024_consolidated_ai_inventory_raw_v1.xls` - Initial raw inventory data
-- `2024_consolidated_ai_inventory_raw_v2.xls` - Updated raw inventory data
-- `2024-Federal-AI-Use-Case-Inventory-main.zip` - Complete source data package
-
-### Processed Data
-- `2024_consolidated_ai_inventory_v1-Improved.xlsx` - Enhanced inventory with analytical elements
-- `2024_consolidated_ai_inventory_v1-Improved-DerivedTrainingData.xlsx` - Generated training data
-
-## Requirements
-
-- n8n for running workflow automation scripts
-- Microsoft Excel for viewing data files
-- Text editor for viewing documentation files
-
-
-## License
-
-[TBD]
+Join us in building this end-to-end system that demonstrates how AI can help organizations better understand and implement AI solutions while continuously improving its own knowledge base.
