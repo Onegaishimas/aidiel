@@ -71,6 +71,37 @@ Let's explore the project structure not just as a file hierarchy, but as a map o
 
 ### Core Project Files
 
+.
+├── AIDIEL_Project_Walkthrough.md
+├── code
+│   ├── useCaseEnrichment.json
+│   └── useCaseTcqa.json
+├── doc
+│   ├── AIDIEL_PROJECT-AI_Use_Case_Enrichment_Workflow_Documentation.md
+│   ├── AIDIEL_PROJECT-AI_Use_Case_TCQA_Workflow_Documentation.md
+│   ├── AIDIEL_PROJECT-Enrichment_Elements.md
+│   ├── AIDIEL_PROJECT-Enrichment_Elements-Prompts.md
+│   ├── AIDIEL_PROJECT-Enrichment_Elements-TCQA-Prompts.md
+│   ├── AIDIEL_PROJECT-Requirements_Specification.md
+│   ├── AIDIEL_PROJECT-Sprintplan-Backend_Track-SP1.md
+│   ├── AIDIEL_PROJECT-Sprintplan-Backend_Track-SP2.md
+│   ├── AIDIEL_PROJECT-Sprintplan-Backend_Track-SP3.md
+│   ├── AIDIEL_PROJECT-Sprintplan-ProjectEnvironment_Track-SP0.md
+│   ├── AIDIEL_PROJECT-Sprintplan-UI_Track-SP1.md
+│   ├── AIDIEL_PROJECT-Sprintplan-UI_Track-SP2.md
+│   ├── AIDIEL_PROJECT-Sprintplan-UI_Track-SP3.md
+│   ├── AIDIEL_PROJECT-Team_Orientation.md
+│   ├── AIDIEL_PROJECT-User_Stories-LLM_Backend_Track-Estimations.md
+│   └── AIDIEL_PROJECT-User_Stories-UI_Track-Estimations.md
+├── original
+│   ├── 2024_consolidated_ai_inventory_raw_v1.xls
+│   ├── 2024_consolidated_ai_inventory_raw_v2.xls
+│   └── 2024-Federal-AI-Use-Case-Inventory-main.zip
+├── processed
+│   ├── 2024_consolidated_ai_inventory_v1-Enriched-DerivedTrainingData.xlsx
+│   └── 2024_consolidated_ai_inventory_v1-Enriched.xlsx
+└── README.md
+
 The `README.md` file is your first stop. It's not just a project overview - it's a concise explanation of our vision and approach. Pay special attention to the sections about Linguistic Switches (LS) and Linguistic Potentiometers (LP) - these are unique to our project and fundamental to how we make AI interactions more controllable and predictable.
 
 ### Code Directory (`/code`)
@@ -91,8 +122,6 @@ These documents help you understand the big picture:
 `AIDIEL_PROJECT-manifest.md` is your map to the project structure. It's particularly useful when you're first getting oriented or when you need to find specific components quickly.
 
 `AIDIEL_PROJECT-Requirements_Specification.md` is crucial because it connects our technical implementation to our actual goals. It's written in Given-When-Then format, which helps you understand not just what we're building, but why each feature matters.
-
-`AIDIEL_PROJECT-Team_Orientation.md` gives you the context of where we are and where we're going. It's especially useful for understanding how your work fits into the bigger picture.
 
 #### Workflow Documentation
 These documents explain our data processing pipelines:
