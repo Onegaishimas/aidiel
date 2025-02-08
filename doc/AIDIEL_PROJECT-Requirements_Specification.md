@@ -3,47 +3,40 @@
 ## 1. Functional Requirements
 
 ### 1.0 System Performance & Operations
-- FR0.1: Ensure system response time under 2 seconds for standard operations
-- FR0.2: Support concurrent user sessions efficiently
-- FR0.3: Implement comprehensive logging and monitoring
-- FR0.4: Support major browsers (Chrome, Firefox, Safari, Edge)
-- FR0.5: Maintain system telemetry and health checks
+- FR0.1: Ensure system response time under 2 seconds for standard operations (GWTS-0)
+- FR0.4: Support major browsers (Chrome, Firefox, Safari, Edge) (GWTS-0)
+- FR0.5: Maintain system telemetry and health checks (GWTS-0)
 
 ### 1.1 User Interface & Experience (Streamlit-based)
-- FR1.1: Implement Streamlit-based user interface
-- FR1.2: Support session management with save/resume capability
-- FR1.3: Implement Linguistic Switch (LS) controls
-- FR1.4: Implement Linguistic Potentiometer (LP) controls
-- FR1.5: Provide session-based user isolation
+- FR1.1: Implement Streamlit-based user interface (GWTS-1)
+- FR1.2: Support session management with save/resume capability (GWTS-1, GWTS-2)
+- FR1.3: Implement Linguistic Switch (LS) controls (GWTS-3)
+- FR1.4: Implement Linguistic Potentiometer (LP) controls (GWTS-3)
+- FR1.5: Provide session-based user isolation (GWTS-6)
 
 ### 1.2 Interview System
-- FR2.1: Conduct AI-driven interviews within 30-minute target duration
-- FR2.2: Interface with fine-tuned LLM backend
-- FR2.3: Implement progress tracking
-- FR2.4: Support interview pause/resume functionality
+- FR2.1: Conduct AI-driven interviews within 30-minute target duration (GWTS-4)
+- FR2.2: Interface with fine-tuned LLM backend (GWTS-4)
 
 ### 1.3 Document Generation
-- FR3.1: Generate structured documentation from templates
-- FR3.2: Support multiple output formats (Markdown, MS Word, PDF)
-- FR3.3: Maintain consistent formatting across outputs
+- FR3.1: Generate structured documentation from templates (GWTS-7)
+- FR3.2: Support multiple output formats (Markdown, MS Word, PDF) (GWTS-7)
+- FR3.3: Maintain consistent formatting across outputs (GWTS-7)
 
 ### 1.4 Feedback & Learning Loop
-- FR4.1: Collect user feedback on AI suggestions
-- FR4.2: Analyze use case uniqueness using LLM
-- FR4.3: Implement RAG for new use cases
-- FR4.4: Support model retraining pipeline
+- FR4.1: Collect user feedback on AI suggestions (GWTS-5)
+- FR4.2: Analyze use case uniqueness using LLM (GWTS-5)
+- FR4.3: Implement RAG for new use cases (GWTS-5)
+- FR4.4: Support model retraining pipeline (GWTS-5)
 
 ### 1.5 Data Management & Security
-- FR5.1: Implement session-based data isolation
-- FR5.2: Manage user progress data
-- FR5.3: Handle template storage and versioning
-- FR5.4: Implement data retention and cleanup policies
-- FR5.5: Provide secure data export capabilities
-- FR5.6: Handle error logging and recovery
-- FR5.7: Implement user notification system
-- FR5.1: Implement session-based data isolation
-- FR5.2: Manage user progress data
-- FR5.3: Handle template storage and versioning
+- FR5.1: Ensure session data security and privacy (GWTS-6)
+- FR5.2: Manage persistent session state (GWTS-1, GWTS-2)
+- FR5.3: Implement document version control (GWTS-7)
+- FR5.4: Implement data retention and cleanup policies (GWTS-6)
+- FR5.5: Provide secure data export capabilities (GWTS-6)
+- FR5.6: Handle error logging and recovery (GWTS-7)
+- FR5.7: Implement user notification system (GWTS-7)
 
 ## 2. Given-When-Then Statements and User Stories
 
@@ -242,53 +235,3 @@ And the system should attempt recovery where possible
    - Implement error logging
    - Create error context capture
    - Design error analysis tools
-```gherkin
-Given multiple users are accessing the system simultaneously
-When they perform interview sessions
-Then each user's data should be isolated in separate sessions
-And no user should be able to access another user's data
-And all session data should be properly cached and retrievable
-```
-
-**User Stories:**
-1. "As a user, I need my interview session data to be private and secure so that my organizational information is protected"
-   - Implement session isolation
-   - Create secure data storage
-   - Design access control mechanisms
-
-2. "As a user, I need all my session data to be reliably cached so I can resume my work at any time"
-   - Develop caching strategy
-   - Implement data persistence
-   - Create session recovery mechanisms
-
-3. "As a system administrator, I need to manage user sessions effectively to maintain system performance"
-   - Create session cleanup routines
-   - Implement monitoring tools
-   - Design storage optimization
-
-### 2.6 Document Generation
-
-#### GWTS-7: Document Creation
-```gherkin
-Given a user has completed their interview
-When they request their use case documentation
-Then the system should apply the appropriate template
-And generate the document in their preferred format
-And ensure all generated content maintains proper formatting
-```
-
-**User Stories:**
-1. "As a user, I need to select my preferred document format so I can easily share the results within my organization"
-   - Implement format selection UI
-   - Create format conversion logic
-   - Design template management system
-
-2. "As a user, I need my generated documents to maintain consistent formatting so they look professional"
-   - Develop formatting rules
-   - Implement template validation
-   - Create output quality checks
-
-3. "As a system administrator, I need to manage document templates so we can update output formats as needed"
-   - Create template management interface
-   - Implement version control
-   - Design template validation system
