@@ -1,4 +1,4 @@
-# AIDIEL Project Overview
+# AIDIEL Project Overview - Builds on the README.md by adding information that will change as we progress at the end, e.g. "Next Steps"
 
 ## AI-Driven Information Enrichment Loop
 
@@ -10,7 +10,8 @@ The project aims to build an end-to-end AI-powered system using the FY24 Federal
 
 ### Current Status
 - ✓ Completed: Initial data analysis, data enrichment, and synthetic dataset creation
-
+- → Active: Developing the interactive AI system and feedback loop
+- Our focus: Steps 4-7 of the project lifecycle
 
 ### Technical Components
 Our work spans five core competency areas:
@@ -40,3 +41,22 @@ These LS and LP mechanisms work together to provide precise control over the AI'
 - Product Management: Jim and Sean
 - Development Team (Some number of Student Interns): Implementation across core competencies
 - Each team member contributes based on their strengths across our five core areas
+
+### Next Steps
+1. Development of high-level business and functional requirements
+2. Translation of requirements into given-when-then statements (GWTS)
+3. Creation of user stories from GWTS
+4. Story estimation and backlog creation
+5. Backlog grooming and prioritization
+6. Individual strength assessment across core competencies
+7. Sprint planning optimized for intern strengths
+8. Environment setup and knowledge transfer
+
+### Success Metrics
+- Functional AI interview system
+- Quality of generated use case artifacts
+- System's ability to learn from new inputs
+- Usefulness of AI recommendations
+- Code quality and documentation
+
+Join us in building this end-to-end system that demonstrates how AI can help organizations better understand and implement AI solutions while continuously improving its own knowledge base.
